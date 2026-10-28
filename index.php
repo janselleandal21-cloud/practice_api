@@ -8,7 +8,11 @@
 </head>
 <body>
     <?php
-    $url="https://practice-api-nsar.onrender.com";
+    $protocol=(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] =='off' || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']==='https')) ? "https" : "http";
+    $host=$_SERVER['HTTP_HOST']=='localhost' ? 'localhost/login_activity' : $_SERVER['HTTP_HOST'];
+    $url=$protocol.'://'.$host;
+    echo  "$url/Request/User.php";
+    
     if(isset($_POST['login'])){
         $idnum = $_POST['idnum'];
         $password = $_POST['password'];
@@ -22,7 +26,7 @@
 
         $ch = curl_init();
         
-        curl_setopt($ch, CURLOPT_URL, "$url//Request/User.php");
+        curl_setopt($ch, CURLOPT_URL, "$url/Request/User.php");
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
