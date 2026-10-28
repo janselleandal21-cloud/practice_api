@@ -42,7 +42,7 @@
             if (isset($result['message'])) {
                 $message = $result['message'];
             } else {
-                $message = 'server connection problem';
+                $message = $result['message'];
             }
 
             echo "<script>
