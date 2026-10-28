@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php
+    $url="https://practice-api-nsar.onrender.com";
     if(isset($_POST['login'])){
         $idnum = $_POST['idnum'];
         $password = $_POST['password'];
@@ -20,7 +21,8 @@
         ];
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://practice-api-nsar.onrender.com/Request/User.php");
+        
+        curl_setopt($ch, CURLOPT_URL, "$url//Request/User.php");
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
